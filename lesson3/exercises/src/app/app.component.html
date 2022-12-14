@@ -17,24 +17,28 @@
 
       <div class="col-6">
          <div class="shuttle-background" [style.backgroundColor]="color">
-            <img #rocketImage src="assets/images/LaunchCode_rocketline_white.png" height = "75" width = "75" [style.left]="0" [style.bottom]="0"/>
+            <img #rocketImage src="assets/images/LaunchCode_rocketline_white.png" height="75" width="75"
+               [style.left]="0" [style.bottom]="0" />
          </div>
       </div>
 
       <div class="col-3">
-         <div class="container-right"b>
-            <button (click)="moveRocket(rocketImage, 'up')">Up</button>
-            <button (click)="moveRocket(rocketImage, 'down')">Down</button>
-            <button (click)="moveRocket(rocketImage, 'right')">Right</button>
-            <button (click)="moveRocket(rocketImage, 'left')">Left</button>
+         <div class="container-right" b>
+            <div *ngIf="!readyLiftoff">
+               <button (click)="moveRocket(rocketImage, 'up')" [disabled]="!topBorder">Up</button>
+               <button (click)="moveRocket(rocketImage, 'down')" [disabled]="!bottomBorder">Down</button>
+               <button (click)="moveRocket(rocketImage, 'right')" [disabled]="!rightBorder">Right</button>
+               <button (click)="moveRocket(rocketImage, 'left')" [disabled]="!leftBorder">Left</button>
+            </div>
+
             <h3>Space Shuttle Height</h3>
             <p>{{height}} km</p>
          </div>
       </div>
    </div>
    <div class="container-control-buttons">
-      <button (click)="verifyLaunch()">Take Off</button>
-      <button (click)="alertLand(rocketImage)">Land</button>
-      <button (click)="abort(rocketImage)">Abort Mission</button>
+      <button (click)="verifyLaunch()" [disabled]="!readyLiftoff">Take Off</button>
+      <button (click)="alertLand(rocketImage)" [disabled]="readyLiftoff">Land</button>
+      <button (click)="abort(rocketImage)" [disabled]="readyLiftoff">Abort Mission</button>
    </div>
 </div>
