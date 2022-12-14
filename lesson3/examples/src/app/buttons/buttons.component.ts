@@ -12,7 +12,7 @@ export class ButtonsComponent implements OnInit {
    goldButton: boolean = false;
    silverButton: boolean = false;
    copperButton: boolean = false;
-   jokeButton: boolean = false;
+   active: boolean = false;
 
    constructor() { }
 
